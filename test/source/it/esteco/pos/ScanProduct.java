@@ -38,4 +38,13 @@ public class ScanProduct {
 
         pointOfSale.onBarcode("99999");
     }
+
+    @Test
+    public void emptyBarcode() throws Exception {
+        context.checking(new Expectations(){{
+            oneOf(display).show("Scanning error: empty barcode!");
+        }});
+
+        pointOfSale.onBarcode("");
+    }
 }
