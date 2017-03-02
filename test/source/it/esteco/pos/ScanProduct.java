@@ -20,4 +20,13 @@ public class ScanProduct {
 
         pointOfSale.onBarcode("12345");
     }
+
+    @Test
+    public void anotherProductFound() throws Exception {
+        context.checking(new Expectations(){{
+            oneOf(display).show("$7.99");
+        }});
+
+        pointOfSale.onBarcode("54321");
+    }
 }
