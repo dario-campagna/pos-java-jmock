@@ -29,4 +29,13 @@ public class ScanProduct {
 
         pointOfSale.onBarcode("54321");
     }
+
+    @Test
+    public void productNotFound() throws Exception {
+        context.checking(new Expectations(){{
+            oneOf(display).show("99999 Not exists!");
+        }});
+
+        pointOfSale.onBarcode("99999");
+    }
 }

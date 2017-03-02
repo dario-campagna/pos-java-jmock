@@ -11,8 +11,10 @@ public class PointOfSale {
     public void onBarcode(String barcode) {
         if ("12345".equals(barcode)) {
             display.show("$11.50");
-        } else {
+        } else if ("54321".equals(barcode)) {
             display.show("$7.99");
+        } else {
+            display.show("99999 Not exists!");
         }
     }
 }
