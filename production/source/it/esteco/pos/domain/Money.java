@@ -11,6 +11,15 @@ public class Money {
         return new Money(amount + money.amount);
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(amount);
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Money) {
@@ -23,9 +32,5 @@ public class Money {
     @Override
     public int hashCode() {
         return 13 * amount + 5;
-    }
-
-    public int getAmount() {
-        return amount;
     }
 }

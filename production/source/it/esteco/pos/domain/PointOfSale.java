@@ -4,10 +4,12 @@ public class PointOfSale {
 
     private Catalog catalog;
     private Display display;
+    private Cart cart;
 
-    public PointOfSale(Catalog catalog, Display display) {
+    public PointOfSale(Catalog catalog, Display display, Cart cart) {
         this.catalog = catalog;
         this.display = display;
+        this.cart = cart;
     }
 
     public void onBarcode(String barcode) {
@@ -16,6 +18,7 @@ public class PointOfSale {
         } else {
             Money price = catalog.findPriceBy(barcode);
             if (price != null) {
+                cart.add(price);
                 display.displayPrice(price);
             } else {
                 display.displayProductNotFound(barcode);
@@ -24,6 +27,6 @@ public class PointOfSale {
     }
 
     public void onTotalRequested() {
-        display.displayPrice(new Money(0));
+        display.displayPrice(cart.total());
     }
 }

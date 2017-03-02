@@ -17,37 +17,37 @@ public class PointOfSaleEndToEndTest {
     @Test
     public void emptyBarcode() throws Exception {
         fakeOperator.input("\n");
-        applicationRunner.start("12345,115");
+        applicationRunner.start("12345,1150");
         applicationRunner.showsEmptyBarcodeError();
     }
 
     @Test
     public void productFound() throws Exception {
         fakeOperator.input("12345\n");
-        applicationRunner.start("12345,115");
+        applicationRunner.start("12345,1150");
         applicationRunner.showsPriceMessage("$11.50");
     }
 
     @Test
     public void productNotFound() throws Exception {
         fakeOperator.input("99999\n");
-        applicationRunner.start("12345,115");
+        applicationRunner.start("12345,1150");
         applicationRunner.showsProductNotFoundMessage("99999");
     }
 
     @Test
     public void totalForNoProducts() throws Exception {
         fakeOperator.input("TOTAL\n");
-        applicationRunner.start("12345,115");
+        applicationRunner.start("12345,1150");
         applicationRunner.showsTotal("$0.00");
     }
 
     @Test
     public void totalForTwoScannedProducts() throws Exception {
         fakeOperator.input("12345\n54321\nTOTAL\n");
-        applicationRunner.start("12345,115;54321,799");
+        applicationRunner.start("12345,1150;54321,799");
         applicationRunner.showsPriceMessage("$11.50");
         applicationRunner.showsPriceMessage("$7.99");
-        applicationRunner.showsTotal("$19,49");
+        applicationRunner.showsTotal("$19.49");
     }
 }

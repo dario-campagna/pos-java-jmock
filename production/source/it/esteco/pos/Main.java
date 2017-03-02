@@ -2,6 +2,7 @@ package it.esteco.pos;
 
 import it.esteco.pos.adapters.ConsoleDisplay;
 import it.esteco.pos.adapters.InMemoryCatalog;
+import it.esteco.pos.adapters.ListCart;
 import it.esteco.pos.domain.PointOfSale;
 
 import java.util.Scanner;
@@ -11,7 +12,7 @@ public class Main {
     private PointOfSale pointOfSale;
 
     public Main(String textCatalog) {
-        this.pointOfSale = new PointOfSale(InMemoryCatalog.from(textCatalog), new ConsoleDisplay());
+        this.pointOfSale = new PointOfSale(InMemoryCatalog.from(textCatalog), new ConsoleDisplay(), new ListCart());
     }
 
     public static void main(String... args) {

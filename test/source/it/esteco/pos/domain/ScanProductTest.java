@@ -1,26 +1,25 @@
 package it.esteco.pos.domain;
 
-import it.esteco.pos.domain.Catalog;
-import it.esteco.pos.domain.Display;
-import it.esteco.pos.domain.PointOfSale;
 import org.jmock.Expectations;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Rule;
 import org.junit.Test;
 
-public class ScanProduct {
+public class ScanProductTest {
 
     @Rule
     public JUnitRuleMockery context = new JUnitRuleMockery();
-    private Catalog catalog = context.mock(Catalog.class);
+    private final Catalog catalog = context.mock(Catalog.class);
     private final Display display = context.mock(Display.class);
-    private PointOfSale pointOfSale = new PointOfSale(catalog, display);
+    private final Cart cart = context.mock(Cart.class);
+    private PointOfSale pointOfSale = new PointOfSale(catalog, display, cart);
 
     @Test
     public void productFound() throws Exception {
         context.checking(new Expectations() {{
             allowing(catalog).findPriceBy("12345");
             will(returnValue(new Money(115)));
+            oneOf(cart).add(new Money(115));
             oneOf(display).displayPrice(new Money(115));
         }});
 
@@ -32,6 +31,7 @@ public class ScanProduct {
         context.checking(new Expectations() {{
             allowing(catalog).findPriceBy("54321");
             will(returnValue(new Money(799)));
+            oneOf(cart).add(new Money(799));
             oneOf(display).displayPrice(new Money(799));
         }});
 
