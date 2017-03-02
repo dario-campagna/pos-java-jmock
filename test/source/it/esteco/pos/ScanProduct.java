@@ -15,10 +15,10 @@ public class ScanProduct {
 
     @Test
     public void productFound() throws Exception {
-        context.checking(new Expectations(){{
-            allowing(catalog).findBy("12345");
+        context.checking(new Expectations() {{
+            allowing(catalog).findPriceBy("12345");
             will(returnValue("$11.50"));
-            oneOf(display).show("$11.50");
+            oneOf(display).displayPrice("$11.50");
         }});
 
         pointOfSale.onBarcode("12345");
@@ -26,10 +26,10 @@ public class ScanProduct {
 
     @Test
     public void anotherProductFound() throws Exception {
-        context.checking(new Expectations(){{
-            allowing(catalog).findBy("54321");
+        context.checking(new Expectations() {{
+            allowing(catalog).findPriceBy("54321");
             will(returnValue("$7.99"));
-            oneOf(display).show("$7.99");
+            oneOf(display).displayPrice("$7.99");
         }});
 
         pointOfSale.onBarcode("54321");
@@ -37,10 +37,10 @@ public class ScanProduct {
 
     @Test
     public void productNotFound() throws Exception {
-        context.checking(new Expectations(){{
-            allowing(catalog).findBy("99999");
+        context.checking(new Expectations() {{
+            allowing(catalog).findPriceBy("99999");
             will(returnValue(null));
-            oneOf(display).show("99999 Not exists!");
+            oneOf(display).displayProductNotFound("99999");
         }});
 
         pointOfSale.onBarcode("99999");
@@ -48,8 +48,8 @@ public class ScanProduct {
 
     @Test
     public void emptyBarcode() throws Exception {
-        context.checking(new Expectations(){{
-            oneOf(display).show("Scanning error: empty barcode!");
+        context.checking(new Expectations() {{
+            oneOf(display).displayEmptyBarcodeError();
         }});
 
         pointOfSale.onBarcode("");

@@ -12,14 +12,13 @@ public class PointOfSale {
 
     public void onBarcode(String barcode) {
         if (barcode.isEmpty()) {
-            display.show("Scanning error: empty barcode!");
+            display.displayEmptyBarcodeError();
         } else {
-            String price = catalog.findBy(barcode);
+            String price = catalog.findPriceBy(barcode);
             if (price != null) {
-                display.show(price);
+                display.displayPrice(price);
             } else {
-                display.show(barcode +
-                        " Not exists!");
+                display.displayProductNotFound(barcode);
             }
         }
     }

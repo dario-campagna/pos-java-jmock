@@ -1,5 +1,9 @@
 package it.esteco.pos;
 
 public interface Display {
-    void show(String price);
+    void displayPrice(String price);
+
+    void displayProductNotFound(String barcode);
+
+    void displayEmptyBarcodeError();
 }
