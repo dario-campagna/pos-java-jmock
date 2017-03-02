@@ -20,8 +20,8 @@ public class ScanProduct {
     public void productFound() throws Exception {
         context.checking(new Expectations() {{
             allowing(catalog).findPriceBy("12345");
-            will(returnValue("$11.50"));
-            oneOf(display).displayPrice("$11.50");
+            will(returnValue(new Money(115)));
+            oneOf(display).displayPrice(new Money(115));
         }});
 
         pointOfSale.onBarcode("12345");
@@ -31,8 +31,8 @@ public class ScanProduct {
     public void anotherProductFound() throws Exception {
         context.checking(new Expectations() {{
             allowing(catalog).findPriceBy("54321");
-            will(returnValue("$7.99"));
-            oneOf(display).displayPrice("$7.99");
+            will(returnValue(new Money(799)));
+            oneOf(display).displayPrice(new Money(799));
         }});
 
         pointOfSale.onBarcode("54321");

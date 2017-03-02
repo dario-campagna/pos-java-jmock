@@ -1,12 +1,13 @@
 package it.esteco.pos.adapters;
 
 import it.esteco.pos.domain.Display;
+import it.esteco.pos.domain.Money;
 
 public class ConsoleDisplay implements Display {
 
     @Override
-    public void displayPrice(String price) {
-        System.out.println(price);
+    public void displayPrice(Money price) {
+        System.out.println(price.getAmount());
     }
 
     @Override

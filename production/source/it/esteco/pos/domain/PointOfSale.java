@@ -14,7 +14,7 @@ public class PointOfSale {
         if (barcode.isEmpty()) {
             display.displayEmptyBarcodeError();
         } else {
-            String price = catalog.findPriceBy(barcode);
+            Money price = catalog.findPriceBy(barcode);
             if (price != null) {
                 display.displayPrice(price);
             } else {
@@ -24,6 +24,6 @@ public class PointOfSale {
     }
 
     public void onTotalRequested() {
-        display.displayPrice("$0.00");
+        display.displayPrice(new Money(0));
     }
 }

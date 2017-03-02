@@ -1,16 +1,17 @@
 package it.esteco.pos.adapters;
 
 import it.esteco.pos.domain.Catalog;
+import it.esteco.pos.domain.Money;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class InMemoryCatalog implements Catalog {
 
-    private Map<String, String> priceByBarCode = new HashMap<>();
+    private Map<String, Money> priceByBarCode = new HashMap<>();
 
     @Override
-    public String findPriceBy(String barcode) {
+    public Money findPriceBy(String barcode) {
         return priceByBarCode.get(barcode);
     }
 
@@ -28,6 +29,6 @@ public class InMemoryCatalog implements Catalog {
 
     private void addEntry(String entry) {
         String[] pair = entry.split(",");
-        priceByBarCode.put(pair[0].trim(), pair[1].trim());
+        priceByBarCode.put(pair[0].trim(), new Money(Integer.parseInt(pair[1].trim())));
     }
 }

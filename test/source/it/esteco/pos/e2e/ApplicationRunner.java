@@ -14,29 +14,27 @@ import static org.junit.Assert.assertThat;
 
 public class ApplicationRunner {
     private ByteArrayOutputStream applicationOutputStream = new ByteArrayOutputStream();
+    private Scanner scanner;
 
     public void start(String textCatalog) {
         System.setOut(new PrintStream(applicationOutputStream));
         Main.main(textCatalog);
+        scanner = new Scanner(new BufferedInputStream(new ByteArrayInputStream(applicationOutputStream.toByteArray())));
     }
 
     void showsEmptyBarcodeError() {
-        Scanner scanner = new Scanner(new BufferedInputStream(new ByteArrayInputStream(applicationOutputStream.toByteArray())));
         assertThat(scanner.nextLine(), is(equalTo("Scan error: empty barcode!")));
     }
 
-    public void showsPriceMessage() {
-        Scanner scanner = new Scanner(new BufferedInputStream(new ByteArrayInputStream(applicationOutputStream.toByteArray())));
-        assertThat(scanner.nextLine(), is(equalTo("$11.50")));
+    public void showsPriceMessage(String price) {
+        assertThat(scanner.nextLine(), is(equalTo(price)));
     }
 
     public void showsProductNotFoundMessage(String barcode) {
-        Scanner scanner = new Scanner(new BufferedInputStream(new ByteArrayInputStream(applicationOutputStream.toByteArray())));
         assertThat(scanner.nextLine(), is(equalTo(barcode + " not found!")));
     }
 
     public void showsTotal(String amount) {
-        Scanner scanner = new Scanner(new BufferedInputStream(new ByteArrayInputStream(applicationOutputStream.toByteArray())));
         assertThat(scanner.nextLine(), is(equalTo(amount)));
     }
 }

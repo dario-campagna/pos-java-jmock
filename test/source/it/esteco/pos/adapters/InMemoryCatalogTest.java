@@ -1,6 +1,6 @@
 package it.esteco.pos.adapters;
 
-import it.esteco.pos.adapters.InMemoryCatalog;
+import it.esteco.pos.domain.Money;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -11,9 +11,9 @@ public class InMemoryCatalogTest {
 
     @Test
     public void findPriceByBarcode() throws Exception {
-        InMemoryCatalog catalog = InMemoryCatalog.from("12345,$11.50;54321,$7.99");
+        InMemoryCatalog catalog = InMemoryCatalog.from("12345,115;54321,799");
 
-        assertThat(catalog.findPriceBy("12345"), is(equalTo("$11.50")));
-        assertThat(catalog.findPriceBy("54321"), is(equalTo("$7.99")));
+        assertThat(catalog.findPriceBy("12345"), is(equalTo(new Money(115))));
+        assertThat(catalog.findPriceBy("54321"), is(equalTo(new Money(799))));
     }
 }
