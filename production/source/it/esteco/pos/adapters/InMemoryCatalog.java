@@ -1,4 +1,6 @@
-package it.esteco.pos;
+package it.esteco.pos.adapters;
+
+import it.esteco.pos.domain.Catalog;
 
 import java.util.HashMap;
 import java.util.Map;

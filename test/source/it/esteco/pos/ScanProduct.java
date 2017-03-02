@@ -1,5 +1,8 @@
 package it.esteco.pos;
 
+import it.esteco.pos.domain.Catalog;
+import it.esteco.pos.domain.Display;
+import it.esteco.pos.domain.PointOfSale;
 import org.jmock.Expectations;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Rule;

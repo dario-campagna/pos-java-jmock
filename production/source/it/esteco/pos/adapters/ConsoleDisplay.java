@@ -1,4 +1,6 @@
-package it.esteco.pos;
+package it.esteco.pos.adapters;
+
+import it.esteco.pos.domain.Display;
 
 public class ConsoleDisplay implements Display {
 
