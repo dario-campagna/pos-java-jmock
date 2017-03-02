@@ -22,7 +22,12 @@ public class Main {
     private void start() {
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
-            pointOfSale.onBarcode(scanner.nextLine());
+            String input = scanner.nextLine();
+            if ("TOTAL".equals(input)) {
+                pointOfSale.onTotalRequested();
+            } else {
+                pointOfSale.onBarcode(input);
+            }
         }
     }
 

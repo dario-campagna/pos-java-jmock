@@ -22,4 +22,8 @@ public class PointOfSale {
             }
         }
     }
+
+    public void onTotalRequested() {
+        display.displayPrice("$0.00");
+    }
 }

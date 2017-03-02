@@ -1,4 +1,4 @@
-package it.esteco.pos;
+package it.esteco.pos.domain;
 
 import it.esteco.pos.domain.Catalog;
 import it.esteco.pos.domain.Display;

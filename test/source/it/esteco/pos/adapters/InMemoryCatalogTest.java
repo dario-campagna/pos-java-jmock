@@ -1,4 +1,4 @@
-package it.esteco.pos;
+package it.esteco.pos.adapters;
 
 import it.esteco.pos.adapters.InMemoryCatalog;
 import org.junit.Test;

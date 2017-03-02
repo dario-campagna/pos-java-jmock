@@ -1,4 +1,6 @@
-package it.esteco.pos;
+package it.esteco.pos.e2e;
+
+import it.esteco.pos.Main;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
@@ -31,5 +33,10 @@ public class ApplicationRunner {
     public void showsProductNotFoundMessage(String barcode) {
         Scanner scanner = new Scanner(new BufferedInputStream(new ByteArrayInputStream(applicationOutputStream.toByteArray())));
         assertThat(scanner.nextLine(), is(equalTo(barcode + " not found!")));
+    }
+
+    public void showsTotal(String amount) {
+        Scanner scanner = new Scanner(new BufferedInputStream(new ByteArrayInputStream(applicationOutputStream.toByteArray())));
+        assertThat(scanner.nextLine(), is(equalTo(amount)));
     }
 }
