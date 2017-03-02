@@ -9,12 +9,15 @@ public class ScanProduct {
 
     @Rule
     public JUnitRuleMockery context = new JUnitRuleMockery();
+    private Catalog catalog = context.mock(Catalog.class);
     private final Display display = context.mock(Display.class);
-    private PointOfSale pointOfSale = new PointOfSale(display);
+    private PointOfSale pointOfSale = new PointOfSale(catalog, display);
 
     @Test
     public void productFound() throws Exception {
         context.checking(new Expectations(){{
+            allowing(catalog).findBy("12345");
+            will(returnValue("$11.50"));
             oneOf(display).show("$11.50");
         }});
 
@@ -24,6 +27,8 @@ public class ScanProduct {
     @Test
     public void anotherProductFound() throws Exception {
         context.checking(new Expectations(){{
+            allowing(catalog).findBy("54321");
+            will(returnValue("$7.99"));
             oneOf(display).show("$7.99");
         }});
 
@@ -33,6 +38,8 @@ public class ScanProduct {
     @Test
     public void productNotFound() throws Exception {
         context.checking(new Expectations(){{
+            allowing(catalog).findBy("99999");
+            will(returnValue(null));
             oneOf(display).show("99999 Not exists!");
         }});
 

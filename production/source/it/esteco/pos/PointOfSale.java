@@ -2,9 +2,11 @@ package it.esteco.pos;
 
 public class PointOfSale {
 
+    private Catalog catalog;
     private Display display;
 
-    public PointOfSale(Display display) {
+    public PointOfSale(Catalog catalog, Display display) {
+        this.catalog = catalog;
         this.display = display;
     }
 
@@ -12,10 +14,9 @@ public class PointOfSale {
         if (barcode.isEmpty()) {
             display.show("Scanning error: empty barcode!");
         } else {
-            if ("12345".equals(barcode)) {
-                display.show("$11.50");
-            } else if ("54321".equals(barcode)) {
-                display.show("$7.99");
+            String price = catalog.findBy(barcode);
+            if (price != null) {
+                display.show(price);
             } else {
                 display.show(barcode +
                         " Not exists!");
