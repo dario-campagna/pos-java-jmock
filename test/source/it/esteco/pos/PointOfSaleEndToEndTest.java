@@ -17,21 +17,21 @@ public class PointOfSaleEndToEndTest {
     @Test
     public void emptyBarcode() throws Exception {
         fakeScanner.scan("\n");
-        applicationRunner.start();
+        applicationRunner.start("12345,$11.50");
         applicationRunner.showsEmptyBarcodeError();
     }
 
     @Test
     public void productFound() throws Exception {
         fakeScanner.scan("12345\n");
-        applicationRunner.start();
+        applicationRunner.start("12345,$11.50");
         applicationRunner.showsPriceMessage();
     }
 
     @Test
     public void productNotFound() throws Exception {
         fakeScanner.scan("99999\n");
-        applicationRunner.start();
+        applicationRunner.start("12345,$11.50");
         applicationRunner.showsProductNotFoundMessage("99999");
     }
 }

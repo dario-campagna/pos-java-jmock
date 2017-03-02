@@ -13,9 +13,9 @@ import static org.junit.Assert.assertThat;
 public class ApplicationRunner {
     private ByteArrayOutputStream applicationOutputStream = new ByteArrayOutputStream();
 
-    public void start() {
+    public void start(String textCatalog) {
         System.setOut(new PrintStream(applicationOutputStream));
-        Main.main();
+        Main.main(textCatalog);
     }
 
     void showsEmptyBarcodeError() {

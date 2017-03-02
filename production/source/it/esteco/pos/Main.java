@@ -8,10 +8,14 @@ import java.util.Scanner;
 
 public class Main {
 
-    private PointOfSale pointOfSale = new PointOfSale(new InMemoryCatalog(), new ConsoleDisplay());
+    private PointOfSale pointOfSale;
+
+    public Main(String textCatalog) {
+        this.pointOfSale = new PointOfSale(InMemoryCatalog.from(textCatalog), new ConsoleDisplay());
+    }
 
     public static void main(String... args) {
-        Main main = new Main();
+        Main main = new Main(args[0]);
         main.start();
     }
 
@@ -21,6 +25,5 @@ public class Main {
             pointOfSale.onBarcode(scanner.nextLine());
         }
     }
-
 
 }
