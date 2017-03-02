@@ -14,7 +14,8 @@ public class PointOfSale {
         } else if ("54321".equals(barcode)) {
             display.show("$7.99");
         } else {
-            display.show("99999 Not exists!");
+            display.show(barcode +
+                    " Not exists!");
         }
     }
 }
