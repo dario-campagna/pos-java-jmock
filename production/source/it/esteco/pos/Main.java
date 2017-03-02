@@ -2,9 +2,9 @@ package it.esteco.pos;
 
 import java.util.Scanner;
 
-public class Main implements Display, Catalog {
+public class Main {
 
-    private PointOfSale pointOfSale = new PointOfSale(this, this);
+    private PointOfSale pointOfSale = new PointOfSale(new InMemoryCatalog(), new ConsoleDisplay());
 
     public static void main(String... args) {
         Main main = new Main();
@@ -18,26 +18,5 @@ public class Main implements Display, Catalog {
         }
     }
 
-    @Override
-    public void displayPrice(String price) {
-        System.out.println(price);
-    }
 
-    @Override
-    public void displayProductNotFound(String barcode) {
-        System.out.println(barcode + " not found!");
-    }
-
-    @Override
-    public void displayEmptyBarcodeError() {
-        System.out.println("Scan error: empty barcode!");
-    }
-
-    @Override
-    public String findPriceBy(String barcode) {
-        if ("12345".equals(barcode)) {
-            return "$11.50";
-        }
-        return null;
-    }
 }
