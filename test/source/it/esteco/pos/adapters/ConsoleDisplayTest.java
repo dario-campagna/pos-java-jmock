@@ -1,5 +1,6 @@
 package it.esteco.pos.adapters;
 
+import it.esteco.pos.domain.MessageFormatter;
 import it.esteco.pos.domain.Money;
 import org.junit.Test;
 
@@ -12,7 +13,7 @@ import static org.junit.Assert.assertThat;
 
 public class ConsoleDisplayTest {
 
-    private final ConsoleDisplay display = new ConsoleDisplay();
+    private final ConsoleDisplay display = new ConsoleDisplay(new MessageFormatter());
 
     @Test
     public void displayPrice() throws Exception {
