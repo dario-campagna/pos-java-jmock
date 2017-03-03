@@ -17,16 +17,12 @@ public class PointOfSale {
     }
 
     public void onBarcode(Barcode barcode) {
-        if (barcode.toString().isEmpty()) {
-            display.displayEmptyBarcodeError();
+        Money price = catalog.findPriceBy(barcode);
+        if (price != null) {
+            cart.add(price);
+            display.displayPrice(price);
         } else {
-            Money price = catalog.findPriceBy(barcode);
-            if (price != null) {
-                cart.add(price);
-                display.displayPrice(price);
-            } else {
-                display.displayProductNotFound(barcode);
-            }
+            display.displayProductNotFound(barcode);
         }
     }
 }

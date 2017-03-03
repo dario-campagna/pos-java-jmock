@@ -49,12 +49,4 @@ public class ScanProductTest {
         pointOfSale.onBarcode(new Barcode("99999"));
     }
 
-    @Test
-    public void emptyBarcode() throws Exception {
-        context.checking(new Expectations() {{
-            oneOf(display).displayEmptyBarcodeError();
-        }});
-
-        pointOfSale.onBarcode(new Barcode(""));
-    }
 }
