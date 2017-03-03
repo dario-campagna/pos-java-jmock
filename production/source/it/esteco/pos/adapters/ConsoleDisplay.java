@@ -1,5 +1,6 @@
 package it.esteco.pos.adapters;
 
+import it.esteco.pos.domain.Barcode;
 import it.esteco.pos.domain.Display;
 import it.esteco.pos.domain.MessageFormatter;
 import it.esteco.pos.domain.Money;
@@ -18,7 +19,7 @@ public class ConsoleDisplay implements Display {
     }
 
     @Override
-    public void displayProductNotFound(String barcode) {
+    public void displayProductNotFound(Barcode barcode) {
         System.out.println(messageFormatter.formatNotFound(barcode));
     }
 

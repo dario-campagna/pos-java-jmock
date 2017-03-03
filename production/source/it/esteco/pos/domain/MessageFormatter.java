@@ -7,7 +7,7 @@ public class MessageFormatter {
         return "$" + integerPart(cents) + "." + decimalPart(cents);
     }
 
-    public String formatNotFound(String barcode) {
+    public String formatNotFound(Barcode barcode) {
         return barcode + " not found!";
     }
 

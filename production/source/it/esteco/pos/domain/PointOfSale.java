@@ -12,8 +12,12 @@ public class PointOfSale {
         this.cart = cart;
     }
 
-    public void onBarcode(String barcode) {
-        if (barcode.isEmpty()) {
+    public void onTotalRequested() {
+        display.displayPrice(cart.total());
+    }
+
+    public void onBarcode(Barcode barcode) {
+        if (barcode.toString().isEmpty()) {
             display.displayEmptyBarcodeError();
         } else {
             Money price = catalog.findPriceBy(barcode);
@@ -24,9 +28,5 @@ public class PointOfSale {
                 display.displayProductNotFound(barcode);
             }
         }
-    }
-
-    public void onTotalRequested() {
-        display.displayPrice(cart.total());
     }
 }

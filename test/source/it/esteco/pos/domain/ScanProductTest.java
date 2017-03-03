@@ -17,36 +17,36 @@ public class ScanProductTest {
     @Test
     public void productFound() throws Exception {
         context.checking(new Expectations() {{
-            allowing(catalog).findPriceBy("12345");
+            allowing(catalog).findPriceBy(new Barcode("12345"));
             will(returnValue(new Money(115)));
             oneOf(cart).add(new Money(115));
             oneOf(display).displayPrice(new Money(115));
         }});
 
-        pointOfSale.onBarcode("12345");
+        pointOfSale.onBarcode(new Barcode("12345"));
     }
 
     @Test
     public void anotherProductFound() throws Exception {
         context.checking(new Expectations() {{
-            allowing(catalog).findPriceBy("54321");
+            allowing(catalog).findPriceBy(new Barcode("54321"));
             will(returnValue(new Money(799)));
             oneOf(cart).add(new Money(799));
             oneOf(display).displayPrice(new Money(799));
         }});
 
-        pointOfSale.onBarcode("54321");
+        pointOfSale.onBarcode(new Barcode("54321"));
     }
 
     @Test
     public void productNotFound() throws Exception {
         context.checking(new Expectations() {{
-            allowing(catalog).findPriceBy("99999");
+            allowing(catalog).findPriceBy(new Barcode("99999"));
             will(returnValue(null));
-            oneOf(display).displayProductNotFound("99999");
+            oneOf(display).displayProductNotFound(new Barcode("99999"));
         }});
 
-        pointOfSale.onBarcode("99999");
+        pointOfSale.onBarcode(new Barcode("99999"));
     }
 
     @Test
@@ -55,6 +55,6 @@ public class ScanProductTest {
             oneOf(display).displayEmptyBarcodeError();
         }});
 
-        pointOfSale.onBarcode("");
+        pointOfSale.onBarcode(new Barcode(""));
     }
 }

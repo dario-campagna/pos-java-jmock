@@ -1,5 +1,7 @@
 package it.esteco.pos.domain;
 
 public interface Catalog {
-    Money findPriceBy(String barcode);
+
+    Money findPriceBy(Barcode barcode);
+
 }

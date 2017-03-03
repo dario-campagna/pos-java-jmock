@@ -12,7 +12,7 @@ public class ListCart implements Cart {
 
     @Override
     public Money total() {
-        return content.stream().reduce(new Money(0), (a,b) -> a.add(b));
+        return content.stream().reduce(new Money(0), Money::add);
     }
 
     @Override
