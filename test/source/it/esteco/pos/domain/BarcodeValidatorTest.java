@@ -18,7 +18,7 @@ public class BarcodeValidatorTest {
 
     @Test
     public void validBarcodeText() throws Exception {
-        assertThat(validator.validate("12345"), is(true));
+        assertThat(validator.isValidBarcode("12345"), is(true));
     }
 
     @Test
@@ -27,6 +27,6 @@ public class BarcodeValidatorTest {
             oneOf(display).displayEmptyBarcodeError();
         }});
 
-        assertThat(validator.validate(""), is(false));
+        assertThat(validator.isValidBarcode(""), is(false));
     }
 }

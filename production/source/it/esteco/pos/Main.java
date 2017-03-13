@@ -43,7 +43,7 @@ public class Main {
                 String input = scanner.nextLine();
                 if (TOTAL_COMMAND.equals(input)) {
                     pointOfSale.onTotalRequested();
-                } else if(validator.validate(input)) {
+                } else if(validator.isValidBarcode(input)) {
                     pointOfSale.onBarcode(new Barcode(input));
                 }
             }

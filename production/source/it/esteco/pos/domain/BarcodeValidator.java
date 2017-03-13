@@ -7,7 +7,7 @@ public class BarcodeValidator {
         this.display = display;
     }
 
-    public boolean validate(String barcodeAsText) {
+    public boolean isValidBarcode(String barcodeAsText) {
         if (barcodeAsText.isEmpty()) {
             display.displayEmptyBarcodeError();
             return false;
